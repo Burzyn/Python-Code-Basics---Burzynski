@@ -1,0 +1,76 @@
+
+# Start:
+
+tab = "\n"
+print(tab*3)
+print("                      Welcome to The Hangman game...")
+
+word_list = ["apple", "star","lion","automobile", "jet", "cloud", "pen", "glass", "bike", "hill", "turn", "house", "water", "plate"]
+
+import random
+chosen_word = random.choice(word_list)
+
+# Lives:
+
+life = 7
+life_icon = " ❤️️ "
+calculated = life_icon*life
+life_display = f"                      [Lives left: {calculated} ]"
+
+# Character count determinant and a word displayer:
+
+chars = len(chosen_word)
+  # print(chars)
+import numpy as np
+word_display = ["_",]
+n = chars
+display = list(np.repeat(word_display, n))
+
+print("\n")
+print("Here is your selected word:")
+print(display)
+print("\n")
+print(life_display)
+print("\n")
+
+# Trial Loop:
+
+while True:
+  if life > 0:
+    s = 0
+    guess = input(str("Please guess a letter: ")).lower()
+    for value, letter in enumerate(chosen_word):
+      if letter == guess:
+        display[value] = guess
+      
+        s = s + 1
+  
+    # Result displayer:
+        
+    if s == 0:
+      print("Wrong")
+      print(display)
+      print("\n")
+      life = life - 1
+      calculated = life_icon*life
+      if life > 0:  
+        print(f"                      [Lives left: {calculated} ]")
+      print("\n")
+    else:
+      print("Correct")
+      print(display)
+      print("\n")
+      calculated = life_icon*life
+      print(f"                      [Lives left: {calculated} ]")
+      print("\n")
+      
+    if "_" not in display:
+      print("                      Game over! You win!")
+      break
+
+  else:
+    print("                      You lost. Game over")
+    break
+
+
+
