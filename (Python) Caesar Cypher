@@ -1,0 +1,40 @@
+
+# Start:
+
+alph = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+x = "\n"
+print(x*2)
+dir = input("Type 'encode' to encrypt, type 'decode' to decrypt (only small letters):\n    ")
+txt = input("Type your message:\n    ")
+shift = int(input("Type the shift number (from 0 to 26):\n    "))
+print(x*2)
+
+# Encode or decode:
+
+d = 1
+if dir == "encode":
+  d = 1
+else:
+  d = -1
+  
+# Text to list conversion:
+  
+txt_list = [*txt]
+new_list = []
+
+# Encoding
+
+for txt_character in txt_list:
+  for letter in alph:
+    if letter == txt_character:
+      new_letter = alph[alph.index(letter) + shift*d]
+      new_list.append(new_letter)
+  if txt_character == ' ':
+    new_list.append(' ')
+
+# Finish:
+    
+a = ''.join(new_list)
+print(f"Your message is:\n\n      {a}")
+print("\n")
